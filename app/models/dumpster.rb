@@ -1,5 +1,5 @@
-class Collect < ApplicationRecord
-  belongs_to :type
+class Dumpster < ApplicationRecord
+  belongs_to :category
 
   validates :name, presence: true
   validates :address, presence: true, uniqueness: true

@@ -1,0 +1,2 @@
+class DumpstersController < ApplicationController
+end

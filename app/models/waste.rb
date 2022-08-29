@@ -1,5 +1,5 @@
-class Produit < ApplicationRecord
-  belongs_to :type
+class Waste < ApplicationRecord
+  belongs_to :category
   belongs_to :user
 
   validates :name, presence: true
