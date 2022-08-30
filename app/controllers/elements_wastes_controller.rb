@@ -1,0 +1,2 @@
+class ElementsWastesController < ApplicationController
+end

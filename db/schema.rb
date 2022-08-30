@@ -10,15 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_29_101952) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_29_153222) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookmarks", force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.bigint "produit_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "waste_id"
+    t.index ["produit_id"], name: "index_bookmarks_on_produit_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
     t.index ["waste_id"], name: "index_bookmarks_on_waste_id"
   end
@@ -39,14 +41,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_101952) do
     t.index ["category_id"], name: "index_dumpsters_on_category_id"
   end
 
+  create_table "element_wastes", force: :cascade do |t|
+    t.bigint "waste_id", null: false
+    t.bigint "element_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["element_id"], name: "index_element_wastes_on_element_id"
+    t.index ["waste_id"], name: "index_element_wastes_on_waste_id"
+  end
+
   create_table "elements", force: :cascade do |t|
     t.string "name"
     t.bigint "category_id", null: false
-    t.bigint "waste_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_elements_on_category_id"
-    t.index ["waste_id"], name: "index_elements_on_waste_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,13 +78,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_101952) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.integer "barcode"
-    t.index ["user_id"], name: "index_wastes_on_user_id"
+    t.bigint "barcode"
   end
 
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "bookmarks", "wastes", column: "produit_id"
+  add_foreign_key "element_wastes", "elements"
+  add_foreign_key "element_wastes", "wastes"
   add_foreign_key "elements", "categories"
-  add_foreign_key "elements", "wastes"
-  add_foreign_key "wastes", "users"
 end

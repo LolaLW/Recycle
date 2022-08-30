@@ -8,4 +8,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :first_name, presence: true, length: { in: 4..20 }
   validates :address, presence: true, uniqueness: true
+
 end

@@ -7,11 +7,12 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:index]
   end
 
-  resources :wastes, except: [:show] do
+  resources :wastes do
     resources :bookmarks, only: [:create]
   end
 
   resources :dumpsters
+  resources :elements
   # Defines the root path route ("/")
   # root "articles#index"
 end
