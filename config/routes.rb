@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'bookmarks/index'
   root to: "pages#home"
   get '/dashboard', to: 'pages#dashboard'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -8,11 +7,12 @@ Rails.application.routes.draw do
   end
 
   resources :wastes do
-    resources :bookmarks, only: [:create]
+    resources :bookmarks, only: [:create, :destroy]
   end
 
-  resources :dumpsters
+  resources :dumpsters, only: [:index, :show]
   resources :elements
+
   # Defines the root path route ("/")
   # root "articles#index"
 end

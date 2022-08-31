@@ -2,11 +2,11 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[edit update destroy]
 
   def new
-    @category = category.new
+    @category = Category.new
   end
 
   def create
-    @category = category.new(category_params)
+    @category = Category.new(category_params)
     if @category.save
       redirect_to categories_path
     else

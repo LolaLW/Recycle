@@ -1,13 +1,12 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>RECYCLE</h1>
+<h4>Triez et recyclez en toute <strong> simplicité </strong> </h4>
 
 <% if user_signed_in? %>
-  <p> Hello <%= current_user.email %> </p>
-<% else  %>
-  <p> You are not login </p>
+  <%= link_to "Let's go", wastes_path %>
+<% else %>
+  <%= link_to "Login", new_user_session_path %>
 <% end %>
-
-
-<h2>visiteur voit la barre de recherche</h2>
-<h2>user à l'option d'accéder à son dash via button</h2>
-<h2>user à l'option d'accéder à ses bookmark sur navbar</h2>
+<%#= simple_form_for(@waste) do |f| %>
+ <%#= f.input :content, placeholder: 'tap ur product here'  %>
+ <%#= f.submit "search" %>
+<%# end %>

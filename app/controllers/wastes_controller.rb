@@ -1,6 +1,10 @@
 class WastesController < ApplicationController
   before_action :set_waste, only: %i[show edit update destroy]
 
+  def index
+    @wastes = Waste.all
+  end
+
   def show
   end
 
