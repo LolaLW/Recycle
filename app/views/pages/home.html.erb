@@ -1,13 +1,23 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="re text-center">
+  <h1>RE</h1>
+</div>
+<div class="cycle text-center">
+  <h1><strong>CYCLE</strong></h1>
+</div>
 
-<% if user_signed_in? %>
-  <p> Hello <%= current_user.email %> </p>
-<% else  %>
-  <p> You are not login </p>
-<% end %>
+<div class="text-center">
+  <h4>Triez et recyclez en toute <strong> simplicité </strong> </h4>
+</div>
 
-
-<h2>visiteur voit la barre de recherche</h2>
-<h2>user à l'option d'accéder à son dash via button</h2>
-<h2>user à l'option d'accéder à ses bookmark sur navbar</h2>
+<div class="btn-home">
+    <% if user_signed_in? %>
+      <button type="button" class="btn-outline-success align-center">
+        <%= link_to "Let's recycle", wastes_path %>
+      </button>
+      <button type="button" class="btn-outline-success align-center">
+        <%= link_to "My space", dashboard_path %>
+      </button>
+    <% else %>
+      <%= link_to "Login", new_user_session_path %>
+    <% end %>
+</div>

@@ -11,8 +11,18 @@
   </head>
 
   <body>
+    <% if params[:action] != "home" %>
+        <div class="logo">
+          <div class="recycle text-center">
+            <h1>RECYCLE</h1>
+            <%# cycle pas même couleur que re, a séparer, comment coller après? %>
+          </div>
+        </div>
+    <% end %>
     <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

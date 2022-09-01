@@ -2,7 +2,7 @@ class ElementsController < ApplicationController
   before_action :set_element, only: %i[edit update destroy]
 
   def new
-    @element = Element.new
+    @elements = Element.new
   end
 
   def create
@@ -37,6 +37,6 @@ class ElementsController < ApplicationController
   end
 
   def element_params
-    params.require(:element).permit(:name, :category_id)
+    params.require(:element).permit(:name)
   end
 end

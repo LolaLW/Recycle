@@ -1,0 +1,24 @@
+<div>
+  <%= form_with url: wastes_path, method: :get, class: "d-flex" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find a waste"
+    %>
+    <%= submit_tag "Search", class: "btn btn-success" %>
+  <% end %>
+</div>
+<div class="row justify-content-center">
+  <div class="col-sm-8">
+    <% @wastes.each do |waste| %>
+        <%= link_to waste_path(waste) do %>
+          <div class="card-waste bg-light card-waste my-3 px-4 py-3 rounded text-dark">
+            <h2><%= waste.name %></h2>
+            <% waste.elements.each do |element| %>
+              <li><%= element.name %> <%= element.category.name %></li>
+            <% end %>
+          </div>
+        <% end %>
+    <% end %>
+  </div>
+</div>

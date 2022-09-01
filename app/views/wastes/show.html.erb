@@ -1,5 +1,10 @@
-<h1><%= @waste.name %></h1>
-<h2><%= @waste.description %></h1>
 
-<h3>user voit quand est son prochain ramassage suivant la cat du bac montré</h3>
-<h3>user voit la map avec les dumpsters (de tout) de son address</h3>
+<h1><%= @waste.name %></h1>
+<ul>
+  <% @waste.elements.each do |element| %>
+    <%= element.name %> <%= element.category.name %>
+  <% end %>
+</ul>
+
+<%# <h3>user voit quand est son prochain ramassage suivant la cat du bac montré</h3>
+<h3>user voit la map avec les dumpsters (de tout) de son address</h3> %>
