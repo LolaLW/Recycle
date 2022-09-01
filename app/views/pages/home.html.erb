@@ -1,12 +1,23 @@
-<h1>RECYCLE</h1>
-<h4>Triez et recyclez en toute <strong> simplicité </strong> </h4>
+<div class="re text-center">
+  <h1>RE</h1>
+</div>
+<div class="cycle text-center">
+  <h1><strong>CYCLE</strong></h1>
+</div>
 
-<% if user_signed_in? %>
-  <%= link_to "Let's go", wastes_path %>
-<% else %>
-  <%= link_to "Login", new_user_session_path %>
-<% end %>
-<%#= simple_form_for(@waste) do |f| %>
- <%#= f.input :content, placeholder: 'tap ur product here'  %>
- <%#= f.submit "search" %>
-<%# end %>
+<div class="text-center">
+  <h4>Triez et recyclez en toute <strong> simplicité </strong> </h4>
+</div>
+
+<div class="btn-home">
+    <% if user_signed_in? %>
+      <button type="button" class="btn-outline-success align-center">
+        <%= link_to "Let's recycle", wastes_path %>
+      </button>
+      <button type="button" class="btn-outline-success align-center">
+        <%= link_to "My space", dashboard_path %>
+      </button>
+    <% else %>
+      <%= link_to "Login", new_user_session_path %>
+    <% end %>
+</div>

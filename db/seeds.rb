@@ -9,6 +9,7 @@
 require "json"
 require "rest-client"
 require "open-uri"
+require "yaml"
 
 Waste.destroy_all
 puts "Waste destroyed"
@@ -31,7 +32,7 @@ barcodes = %w[59032823
 puts "Barcodes done"
 
 # category = Category.create(:name)
-categories = ["Pbl Jaune", "Pbl Bleue"]
+categories = ["Bac jaune", "Bac bleu", "Bac gris", "Bac vert", "Bac marron"]
 
 categories.each do |category|
   Category.create(name: category)
@@ -39,13 +40,23 @@ end
 
 puts "Categories done"
 
-# identifiants = Element.pluck(:name)
-identifiants = ["Carton", "Papier", "Plastique"]
-
-identifiants.each do |identifiant|
-  Element.create(name: identifiant, category: Category.first)
-  # A REVOIR ICI pour pas que tous les Elements soient associé à la premiere Category
+["brique", "carton", "plastique", "métal", "papier", "verre", "verdure"].each do |el|
+  element = Element.new(name: el)
+  if el == "brique" || el == "carton" || el == "plastique" || el == "métal"
+    element.category = Category.find_by_name('Bac jaune')
+  elsif el == "papier"
+    element.category = Category.find_by_name('Bac bleu')
+  elsif el == "verre"
+    element.category = Category.find_by_name('Bac vert')
+  elsif el == "verdure"
+    element.category = Category.find_by_name('Bac marron')
+  else
+    element.category = Category.find_by_name('Bac gris')
+  end
+  element.save!
 end
+
+identifiants = Element.pluck(:name)
 
 p Category.all.count
 p Element.all.count
@@ -73,3 +84,5 @@ barcodes.each do |barcode|
 end
 
 p Waste.all.count
+
+# Il faut créer en base tous les éléments

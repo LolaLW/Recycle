@@ -1,6 +1,6 @@
 class DumpstersController < ApplicationController
   def index
-    @dumpster = Dumpster.all
+    @dumpsters = Dumpster.all
   end
 
   def show

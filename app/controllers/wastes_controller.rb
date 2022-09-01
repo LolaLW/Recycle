@@ -1,8 +1,14 @@
 class WastesController < ApplicationController
   before_action :set_waste, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   def index
-    @wastes = Waste.all
+    if params[:query].present?
+      sql_query = "name ILIKE :query"
+      @wastes = Waste.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @wastes = Waste.all
+    end
   end
 
   def show
