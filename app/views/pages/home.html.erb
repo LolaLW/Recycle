@@ -11,10 +11,10 @@
 
 <div class="btn-home">
     <% if user_signed_in? %>
-      <button type="button" class="btn-outline-success align-center">
+      <button type="button" class="btn-outline-success">
         <%= link_to "Let's recycle", wastes_path %>
       </button>
-      <button type="button" class="btn-outline-success align-center">
+      <button type="button" class="btn-outline-success">
         <%= link_to "My space", dashboard_path %>
       </button>
     <% else %>

@@ -1,4 +1,4 @@
-<div>
+<div class="Search bar">
   <%= form_with url: wastes_path, method: :get, class: "d-flex" do %>
     <%= text_field_tag :query,
       params[:query],
@@ -8,17 +8,25 @@
     <%= submit_tag "Search", class: "btn btn-success" %>
   <% end %>
 </div>
+
 <div class="row justify-content-center">
   <div class="col-sm-8">
     <% @wastes.each do |waste| %>
-        <%= link_to waste_path(waste) do %>
           <div class="card-waste bg-light card-waste my-3 px-4 py-3 rounded text-dark">
-            <h2><%= waste.name %></h2>
-            <% waste.elements.each do |element| %>
-              <li><%= element.name %> <%= element.category.name %></li>
+            <%= link_to waste_path(waste) do %>
+              <h2><%= waste.name %></h2>
+              <% waste.elements.each do |element| %>
+                <li><%= element.name %> <%= element.category.name %></li>
+              <% end %>
+            <% end %>
+            <%= link_to waste_bookmarks_path(waste), data: {turbo_method: :post} do %>
+              <div class="bookmark">
+                <button type="button" class="btn-outline-success align-center">
+                  <%# if click change to other full + create ds bookmark %>
+                </button>
+              </div>
             <% end %>
           </div>
-        <% end %>
     <% end %>
   </div>
 </div>

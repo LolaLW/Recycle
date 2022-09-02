@@ -16,24 +16,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_153222) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "produit_id", null: false
+    t.bigint "waste_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "waste_id"
-    t.index ["produit_id"], name: "index_bookmarks_on_produit_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
     t.index ["waste_id"], name: "index_bookmarks_on_waste_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "dumpsters", force: :cascade do |t|
     t.string "name"
-    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "schedule"
@@ -82,7 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_29_153222) do
   end
 
   add_foreign_key "bookmarks", "users"
-  add_foreign_key "bookmarks", "wastes", column: "produit_id"
+  add_foreign_key "bookmarks", "wastes"
   add_foreign_key "element_wastes", "elements"
   add_foreign_key "element_wastes", "wastes"
   add_foreign_key "elements", "categories"
