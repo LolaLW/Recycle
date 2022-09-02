@@ -1,10 +1,12 @@
-
-<h1><%= @waste.name %></h1>
-<ul>
+<div>
+  <h1><%= @waste.name %></h1>
   <% @waste.elements.each do |element| %>
-    <%= element.name %> <%= element.category.name %>
+    <p><%= element.name %></p>
+    <p><%= element.category.name %></p>
   <% end %>
-</ul>
+</div>
+
+
 
 <%# <h3>user voit quand est son prochain ramassage suivant la cat du bac montré</h3>
 <h3>user voit la map avec les dumpsters (de tout) de son address</h3> %>

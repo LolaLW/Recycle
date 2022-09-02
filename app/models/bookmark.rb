@@ -1,4 +1,4 @@
 class Bookmark < ApplicationRecord
   belongs_to :user
-  belongs_to :waste, dependent: :destroy
+  belongs_to :waste
 end

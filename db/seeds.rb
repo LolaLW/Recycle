@@ -15,6 +15,8 @@ Waste.destroy_all
 puts "Waste destroyed"
 Element.destroy_all
 puts "Element destroyed"
+Dumpster.destroy_all
+puts "Dumpsters destroyed"
 Category.destroy_all
 puts "Category destroyed"
 
@@ -85,4 +87,40 @@ end
 
 p Waste.all.count
 
-# Il faut créer en base tous les éléments
+p "Parsing Open Data Ardennes API"
+p "Creating dumpsters"
+
+bac_a_verres_url = "https://ardennemetropole.opendatasoft.com/api/v2/catalog/datasets/bennes-a-verre/records?limit=-1"
+ordures_menageres_url = "https://ardennemetropole.opendatasoft.com/api/v2/catalog/datasets/pav-ordures-menageres-residuelles/records?limit=-1"
+collecte_des_dechets_tri_selectif_url = "https://ardennemetropole.opendatasoft.com/api/v2/catalog/datasets/collecte-des-dechets-tri-selectif/records?limit=-1"
+
+bac_a_verres_json_file = JSON.parse(RestClient.get(bac_a_verres_url))
+ordures_menageres_json_file = JSON.parse(RestClient.get(ordures_menageres_url))
+
+bac_a_verres_json_file.dig("records").each do |record|
+  street_address = record.dig("record", "fields", "adresse")
+  city = record.dig("record", "fields", "commune")
+  postal_code = record.dig("record", "fields", "cp")
+  category_name = record.dig("record", "fields", "type_dch")
+  case category_name
+  when "VERRE"
+    category = Category.find_by_name("Bac vert")
+  end
+  Dumpster.create!(category: category,
+                   address: "#{street_address} #{city} #{postal_code}")
+  p "created 1 dumpster bac à verre"
+end
+
+ordures_menageres_json_file.dig("records").each do |record|
+  street_address = record.dig("record", "fields", "adresse")
+  city = record.dig("record", "fields", "commune")
+  postal_code = record.dig("record", "fields", "cp")
+  category_name = record.dig("record", "fields", "type_dch")
+  case category_name
+  when "autre"
+    category = Category.find_by_name("Bac gris")
+  end
+  Dumpster.create!(category: category,
+                   address: "#{street_address} #{city} #{postal_code}")
+  p "created 1 dumpster bac gris"
+end

@@ -19,13 +19,23 @@
                 <li><%= element.name %> <%= element.category.name %></li>
               <% end %>
             <% end %>
-            <%= link_to waste_bookmarks_path(waste), data: {turbo_method: :post} do %>
-              <div class="bookmark">
-                <button type="button" class="btn-outline-success align-center">
-                  <%# if click change to other full + create ds bookmark %>
-                </button>
-              </div>
+            <% if waste.users.include?(current_user) %>
+              <%= link_to waste_bookmark_path(waste,Bookmark.where(waste: waste, user: current_user).first), data: {turbo_method: :delete} do %>
+                <div class="bookmark">
+                  DELETE BOOKMARK
+                </div>
+              <% end %>
+            <% else  %>
+              <%= link_to waste_bookmarks_path(waste), data: {turbo_method: :post} do %>
+                <div class="bookmark">
+                  <button type="button" class="btn-outline-success align-center">
+                  save
+                  </button>
+                </div>
+
+              <% end %>
             <% end %>
+
           </div>
     <% end %>
   </div>
