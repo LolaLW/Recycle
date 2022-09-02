@@ -22,6 +22,7 @@
             <% if waste.users.include?(current_user) %>
               <%= link_to waste_bookmark_path(waste,Bookmark.where(waste: waste, user: current_user).first), data: {turbo_method: :delete} do %>
                 <div class="bookmark">
+                fgml,hkl,lr
                   DELETE BOOKMARK
                 </div>
               <% end %>
