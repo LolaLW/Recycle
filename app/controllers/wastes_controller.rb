@@ -12,6 +12,7 @@ class WastesController < ApplicationController
   end
 
   def show
+    @pickups = Pickup.find_by(name: :postal_code.to_s)
   end
 
   def new

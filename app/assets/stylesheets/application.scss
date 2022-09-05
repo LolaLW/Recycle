@@ -17,10 +17,12 @@ h1, h2, h3 {
   font-family: $headers-font;
 }
 
-.container {
-  width: 90% !important;
-}
-
 a {
   text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
 }

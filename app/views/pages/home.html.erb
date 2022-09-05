@@ -1,23 +1,26 @@
-<div class="re text-center">
-  <h1>RE</h1>
-</div>
-<div class="cycle text-center">
-  <h1><strong>CYCLE</strong></h1>
-</div>
-
 <div class="text-center">
-  <h4>Triez et recyclez en toute <strong> simplicité </strong> </h4>
+  <div id="re">
+    <h1>RE</h1>
+  </div>
+  <div id="cycle">
+    <h1>CYCLE</h1>
+  </div>
 </div>
+<div class="home-container">
+  <div class="text-center">
+    <h4>Triez et recyclez en toute <strong> simplicité </strong> </h4>
+  </div>
 
-<div class="btn-home">
-    <% if user_signed_in? %>
-      <button type="button" class="btn-outline-success">
-        <%= link_to "Let's recycle", wastes_path %>
-      </button>
-      <button type="button" class="btn-outline-success">
-        <%= link_to "My space", dashboard_path %>
-      </button>
-    <% else %>
-      <%= link_to "Login", new_user_session_path %>
-    <% end %>
+  <div class="btn-home">
+      <% if user_signed_in? %>
+        <button type="button" class="btn-outline-success">
+          <%= link_to "Let's recycle", wastes_path %>
+        </button>
+        <button type="button" class="btn-outline-success">
+          <%= link_to "My space", dashboard_path %>
+        </button>
+      <% else %>
+        <%= link_to "Login", new_user_session_path %>
+      <% end %>
+  </div>
 </div>

@@ -1,1 +1,18 @@
 // Specific CSS for your home-page
+.home-container {
+  background-image: image-url("fond_homepage.png");
+  background-size: cover;
+  background-position: center;
+  padding: 20px 0px 20px 0px;
+  min-height: 70vh;
+}
+
+#re > h1 {
+  font-size: 54px;
+  margin-bottom: 0px;
+}
+
+#cycle > h1 {
+  font-size: 34px;
+  margin-bottom: 0px;
+}

@@ -1,17 +1,19 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+.navbar {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #2a3139;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
+.navbar img {
+  filter: invert(80);
   width: 40px;
 }
 
-.navbar {
-  position: fixed;
-  bottom: 0;
+.container-nav {
+  display: flex;
+  align-content: center;
 }

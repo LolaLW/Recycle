@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pickups/new'
+  get 'pickups/create'
   root to: "pages#home"
   get '/dashboard', to: 'pages#dashboard', as: :dashboard
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   resources :dumpsters, only: [:index, :show]
   resources :elements
   resources :categories
+
   # Defines the root path route ("/")
   # root "articles#index"
 end
