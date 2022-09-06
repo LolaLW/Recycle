@@ -1,40 +1,35 @@
-<h1>hello <%= @user.email %></h1>
-
-<h2>user peut changer son address</h2>
-<h2>user peut add & edit ; waste, element, category ici</h2>
-<h2>a un button/type onglet pour ses bookmarks</h2>
-
-
-<div class="bookmarks">
-  <h1>Vos favoris : </h1>
-  <% @bookmarked_wastes.each do |waste| %>
-    <div class="card-waste bg-light card-waste my-3 px-4 py-3 rounded text-dark">
-      <%= link_to waste_path(waste) do %>
-        <h2><%= waste.name %></h2>
-        <% waste.elements.each do |element| %>
-          <li><%= element.name %> <%= element.category.name %></li>
+<div class="container-dashboard">
+  <h1>hello <%= @user.first_name %></h1>
+  <div class="bookmarks">
+    <h1>Vos favoris : </h1>
+    <% @bookmarked_wastes.each do |waste| %>
+      <div class="card-waste bg-light card-waste my-3 px-4 py-3 rounded text-dark">
+        <%= link_to waste_path(waste) do %>
+          <h2><%= waste.name %></h2>
+          <% waste.elements.each do |element| %>
+            <li><%= element.name %> <%= element.category.name %></li>
+          <% end %>
         <% end %>
-      <% end %>
-      <% if waste.users.include?(current_user) %>
-        <%= link_to waste_bookmark_path(waste,Bookmark.where(waste: waste, user: current_user).first), data: {turbo_method: :delete} do %>
-          <div class="bookmark">
-            DELETE BOOKMARK
-          </div>
+        <% if waste.users.include?(current_user) %>
+          <%= link_to waste_bookmark_path(waste,Bookmark.where(waste: waste, user: current_user).first), data: {turbo_method: :delete} do %>
+            <div class="bookmark">
+              DELETE BOOKMARK
+            </div>
+          <% end %>
+        <% else  %>
+          <%= link_to waste_bookmarks_path(waste), data: {turbo_method: :post} do %>
+            <div class="bookmark">
+              <button type="button" class="btn-outline-success align-center">
+                <%# if click change to other full + create ds bookmark %>
+              </button>
+            </div>
+          <% end %>
         <% end %>
-      <% else  %>
-        <%= link_to waste_bookmarks_path(waste), data: {turbo_method: :post} do %>
-          <div class="bookmark">
-            <button type="button" class="btn-outline-success align-center">
-              <%# if click change to other full + create ds bookmark %>
-            </button>
-          </div>
-        <% end %>
-      <% end %>
 
-    </div>
-  <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
 
 <% console %>
 <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>

@@ -1,41 +1,49 @@
-<div class="Search bar">
-  <%= form_with url: wastes_path, method: :get, class: "d-flex" do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Find a waste"
-    %>
-    <%= submit_tag "Search", class: "btn btn-success" %>
-  <% end %>
-</div>
+<div class="container-waste-index">
 
-<div class="row justify-content-center">
-  <div class="col-sm-8">
-    <% @wastes.each do |waste| %>
-          <div class="card-waste bg-light card-waste my-3 px-4 py-3 rounded text-dark">
-            <%= link_to waste_path(waste) do %>
-              <h2><%= waste.name %></h2>
-              <% waste.elements.each do |element| %>
-                <li><%= element.name %> <%= element.category.name %></li>
-              <% end %>
-            <% end %>
-            <% if waste.users.include?(current_user) %>
-              <%= link_to waste_bookmark_path(waste,Bookmark.where(waste: waste, user: current_user).first), data: {turbo_method: :delete} do %>
-                <div class="bookmark">
-                  DELETE BOOKMARK
-                </div>
-              <% end %>
-            <% else  %>
-              <%= link_to waste_bookmarks_path(waste), data: {turbo_method: :post} do %>
-                <div class="bookmark">
-                  <button type="button" class="btn-outline-success align-center">
-                  save
-                  </button>
-                </div>
-              <% end %>
-            <% end %>
-
-          </div>
+  <div class="Search bar">
+    <%= form_with url: wastes_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find a waste"
+      %>
+      <%= submit_tag "Search", class: "btn btn-success" %>
     <% end %>
   </div>
+
+  <div class="row justify-content-center">
+      <% @wastes.each do |waste| %>
+
+            <div class="card-waste">
+              <div>
+                <%= link_to waste_path(waste) do %>
+                  <h2><%= waste.name %></h2>
+                  <div>
+                    <% waste.elements.each do |element| %>
+                      <div><%= element.name %> => <%= element.category.name %></div>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+
+              <div>
+                <% if waste.users.include?(current_user) %>
+                  <%= link_to waste_bookmark_path(waste,Bookmark.where(waste: waste, user: current_user).first), data: {turbo_method: :delete} do %>
+                    <div class="bookmark">
+                      <%= image_tag("bookmark_full.png") %>
+                    </div>
+                  <% end %>
+                <% else  %>
+                  <%= link_to waste_bookmarks_path(waste), data: {turbo_method: :post} do %>
+                    <div class="bookmark">
+                      <%= image_tag("bookmark.png") %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+
+            </div>
+
+      <% end %>
+    </div>
 </div>

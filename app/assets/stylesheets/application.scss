@@ -16,13 +16,27 @@
 h1, h2, h3 {
   font-family: $headers-font;
 }
+h4, h5, h6 {
+  font-family: $body-font;
+}
 
 a {
   text-decoration: none;
 }
 
 .container {
+  display: flex;
+  justify-content: center;
   width: 100%;
   padding-left: 0px;
   padding-right: 0px;
+  padding-bottom: 55px;
+}
+
+.container-dashboard {
+  width: 100%;
+}
+
+.recycle span {
+  color: #A7E0B0;
 }

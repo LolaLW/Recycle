@@ -4,15 +4,44 @@
   background-size: cover;
   background-position: center;
   padding: 20px 0px 20px 0px;
-  min-height: 70vh;
+  min-height: 63vh;
 }
 
 #re > h1 {
-  font-size: 54px;
+  padding-top: 25px;
+  font-size: 62px;
   margin-bottom: 0px;
+  line-height: 0.8;
+  color: #2a3139;
 }
 
 #cycle > h1 {
-  font-size: 34px;
+  font-size: 50px;
   margin-bottom: 0px;
+  line-height: 0.8;
+  color: #A7E0B0;
+}
+
+.btn-home {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-home .btn-outline-success {
+  padding: 8px 12px;
+  border-radius: 25px;
+  background-color: #D3EFD7;
+  min-width: 90px;
+}
+
+.btn-home .btn-outline-success a {
+  color: #2a3139;
+}
+
+#slogan {
+  padding-top: 5px;
+}
+
+.container-home {
+  width: 100%;
 }
