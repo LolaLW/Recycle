@@ -1,3 +1,69 @@
-<h1>Bookmarks#index</h1>
-<p>Find me in app/views/bookmarks/index.html.erb</p>
-<p>fav du user ici</p>
+<div class="container-dashboard">
+
+  <%# <h4>hello <%= @user.first_name %>
+  <%# vos favoris ici ;</h4> %>
+
+  <div class="bookmarks-info">
+    <% @bookmarked_wastes.each do |waste| %>
+
+            <div class="card-waste">
+              <div>
+                <%= link_to waste_path(waste) do %>
+                  <h2><%= waste.name %></h2>
+
+                  <div class="wastes-elements">
+                    <% waste.elements.each do |element| %>
+
+                      <div class="waste-element">
+
+                        <div class="element-name">
+                          <%= element.name %>
+                        </div>
+
+                        <div class="element-category-name
+                          <% case element.category.name
+                          when "Bac jaune" %>
+                            bac-jaune
+                          <% when "Bac bleu" %>
+                            bac-bleu
+                          <% when "Bac blanc" %>
+                            bac-blanc
+                          <% when "Bac marron" %>
+                            bac-marron
+                          <% when "Bac gris" %>
+                            bac-gris
+                          <% end %>
+                        ">
+                          <%= image_tag("trash.png") %>
+                          <%= element.category.name %>
+                        </div>
+
+                      </div>
+                    <% end %>
+
+                  </div>
+
+                <% end %>
+              </div>
+
+        <div class="bookmarks">
+          <% if waste.users.include?(current_user) %>
+            <%= link_to waste_bookmark_path(waste,Bookmark.where(waste: waste, user: current_user).first), data: {turbo_method: :delete} do %>
+              <div class="bookmark-full">
+                <%= image_tag("bookmark_full.png") %>
+              </div>
+              <% end %>
+          <% else  %>
+            <%= link_to waste_bookmarks_path(waste), data: {turbo_method: :post} do %>
+              <div class="bookmark">
+                <%= image_tag("bookmark.png") %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+
+</div>

@@ -1,0 +1,19 @@
+.btn-search {
+  background-color: $green-re;
+  padding: 5px 22px;
+}
+
+.search-text {
+  border: none;
+}
+
+.search-bar .d-flex {
+  border: 1px solid $navbar;
+  height: 52px;
+  border-radius: 20px;
+}
+
+.btn-search, .search-text {
+  height: 50px;
+  border-radius: 20px;
+}

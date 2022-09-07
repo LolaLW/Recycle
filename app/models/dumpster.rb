@@ -1,5 +1,4 @@
 class Dumpster < ApplicationRecord
-  belongs_to :category
   validates :address, presence: true
 
   geocoded_by :address

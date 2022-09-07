@@ -1,0 +1,59 @@
+.card-waste {
+  // ICI
+  box-shadow: 0px 0px 10px 0px lightgray;
+  & a {
+    text-decoration: none;
+    color: black;
+  }
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.card-waste img {
+  width: 27px;
+}
+
+.container-waste-index {
+  width: 80%;
+}
+
+.wastes-elements {
+  display: flex;
+}
+
+.waste-element {
+  padding-right: 30px;
+}
+
+.element-category-name img {
+/*  border-radius: 10px;
+  padding: 2px;*/
+  width: 18px;
+}
+
+.card-waste h2 {
+  font-size: 20px;
+}
+
+.bac-jaune {
+  color: $yellow;
+}
+
+.bac-bleu, .bac-bleu img  {
+  color: $blue;
+}
+
+.bac-blanc, .bac-blanc img  {
+  color: $li-gray;
+}
+
+.bac-marron, .bac-marron img  {
+  color: $brown;
+}
+
+.bac-gris, .bac-gris img  {
+  color: $gray;
+}

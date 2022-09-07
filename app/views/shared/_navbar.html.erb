@@ -1,9 +1,7 @@
-<%# mettre BUTTON pour user vers ses fav (index bookmarks) %>
-
 <div class="navbar">
 
   <div class="container-nav">
-    <%= link_to "#" do %>
+    <%= link_to dumpsters_path do %>
       <img src= "<%= image_path('placeholder.png') %>" />
     <% end %>
   </div>
@@ -18,6 +16,14 @@
     <%= link_to wastes_path do %>
       <img src= "<%= image_path('loupe.png') %>" />
     <% end %>
+  </div>
+
+    <div class="container-nav">
+      <div id="bookmark-width">
+        <%= link_to user_bookmarks_path(current_user) do %>
+          <img src= "<%= image_path('bookmark.png') %>" />
+        <% end %>
+      </div>
   </div>
 
 </div>

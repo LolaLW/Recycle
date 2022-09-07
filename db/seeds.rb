@@ -18,7 +18,6 @@ Waste.destroy_all
 Pickup.destroy_all
 Dumpster.destroy_all
 
-
 barcodes = %w[59032823
   3274080005003
   7622210449283
@@ -49,15 +48,17 @@ puts "Categories done"
     element.category = Category.find_by_name('Bac bleu')
   elsif el == "verre"
     element.category = Category.find_by_name('Bac blanc')
-  elsif el == "verdure"
+  elsif el == "alimentaire"
     element.category = Category.find_by_name('Bac marron')
   else
-    element.category = Category.find_by_name('Bac vert')
+    element.category = Category.find_by_name('Bac gris')
   end
   element.save!
 end
 
 identifiants = Element.pluck(:name)
+
+puts "Elements done"
 
 p Category.all.count
 p Element.all.count
@@ -84,12 +85,11 @@ barcodes.each do |barcode|
   end
 end
 
-puts "Element waste done"
+puts "Waste done"
 p Waste.all.count
 
+# -
 
-
-puts "Created pickup"
 # create 20 pickups with name: 'Paris_01', etc.. and description from scrapping paris.fr
 
 def define_post_code(code)
@@ -113,57 +113,40 @@ description = []
   Pickup.create(name: define_post_code(code), description: description)
 end
 
-
-
-
-
-
 # je scrappe
+# string relative à l'id -> je stocke dans une variable -> je clean
+# &
+# je créé un object Pickup (le name doit être reconnaissable pour le faire matcher avec le postal_code)
+# Pickup.create(name: , description: string)
 
-  # string relative à l'id -> je stocke dans une variable -> je clean
-  # &
-  # je créé un object Pickup (le name doit être reconnaissable pour le faire matcher avec le postal_code)
-  # Pickup.create(name: , description: string)
+puts "Pickup done"
+
+# -
+
+colonnes_a_verre_url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=dechets-menagers-points-dapport-volontaire-colonnes-a-verre&q=&facet=type_colonne&facet=code_postal&facet=etat&facet=flux/records?limit=10"
+
+colonnes_a_verre_json_file = JSON.parse(RestClient.get(colonnes_a_verre_url))
+
+colonnes_a_verre_json_file.dig("records").each do |record|
+  name = record.dig("datasetid")
+  address = record.dig("fields", "adresse")
+  coordinates = record.dig("geometry", "coordinates")
+
+  Dumpster.create!(name: name,
+                   address: address,
+                   latitude: coordinates[0],
+                   longitude: coordinates[1]
+                  )
+
+  puts "Dumpster done"
+end
+
+p Dumpster.all
 
 
 
 
 
 
-# p "Parsing Open Data Ardennes API"
-# p "Creating dumpsters"
-
-# bac_a_verres_url = "https://ardennemetropole.opendatasoft.com/api/v2/catalog/datasets/bennes-a-verre/records?limit=-1"
-# ordures_menageres_url = "https://ardennemetropole.opendatasoft.com/api/v2/catalog/datasets/pav-ordures-menageres-residuelles/records?limit=-1"
-# collecte_des_dechets_tri_selectif_url = "https://ardennemetropole.opendatasoft.com/api/v2/catalog/datasets/collecte-des-dechets-tri-selectif/records?limit=-1"
-
-# bac_a_verres_json_file = JSON.parse(RestClient.get(bac_a_verres_url))
-# ordures_menageres_json_file = JSON.parse(RestClient.get(ordures_menageres_url))
-
-# bac_a_verres_json_file.dig("records").each do |record|
-#   street_address = record.dig("record", "fields", "adresse")
-#   city = record.dig("record", "fields", "commune")
-#   postal_code = record.dig("record", "fields", "cp")
-#   category_name = record.dig("record", "fields", "type_dch")
-#   case category_name
-#   when "VERRE"
-#     category = Category.find_by_name("Bac vert")
-#   end
-#   Dumpster.create!(category: category,
-#                    address: "#{street_address} #{city} #{postal_code}")
-#   p "created 1 dumpster bac à verre"
-# end
-
-# ordures_menageres_json_file.dig("records").each do |record|
-#   street_address = record.dig("record", "fields", "adresse")
-#   city = record.dig("record", "fields", "commune")
-#   postal_code = record.dig("record", "fields", "cp")
-#   category_name = record.dig("record", "fields", "type_dch")
-#   case category_name
-#   when "autre"
-#     category = Category.find_by_name("Bac gris")
-#   end
-#   Dumpster.create!(category: category,
-#                    address: "#{street_address} #{city} #{postal_code}")
-#   p "created 1 dumpster bac gris"
-# end
+# latitude: ,
+# longitude:

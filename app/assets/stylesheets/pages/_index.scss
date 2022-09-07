@@ -1,24 +1,2 @@
 // Import page-specific CSS files here.
 @import "home";
-
-.card-waste {
-  // ICI
-  box-shadow: 0px 0px 10px 0px lightgray;
-  & a {
-    text-decoration: none;
-    color: black;
-  }
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  padding-bottom: 25px;
-  margin-top: 20px;
-}
-
-.card-waste img {
-  width: 32px;
-}
-
-.container-waste-index {
-  width: 80%;
-}

@@ -1,6 +1,8 @@
 class BookmarksController < ApplicationController
   def index
     @bookmarks = Bookmark.all
+    @user = current_user
+    @bookmarked_wastes = @user.bookmarked_wastes
   end
 
   def create
