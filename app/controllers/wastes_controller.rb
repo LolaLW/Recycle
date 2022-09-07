@@ -12,8 +12,7 @@ class WastesController < ApplicationController
   end
 
   def show
-    postal_code = current_user.address[/\d{5}/]
-    @pickup = Pickup.find_by(name: postal_code)
+    @pickup = current_user.pickup
   end
 
   def new
