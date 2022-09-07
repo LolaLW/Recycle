@@ -63,12 +63,12 @@
 
     <div class="calendar">
 
-      <h3><%= @pickup.name %></h3>
+      <h3><%= @pickup&.name %></h3>
        <%= image_tag("calendar.png") %>
     </div>
 
-    
-    <%= @pickup.description.html_safe %>
+
+    <%= @pickup&.description&.html_safe %>
 
   </div>
 
