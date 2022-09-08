@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'pickups/new'
   get 'pickups/create'
+  get 'pickups/update'
   root to: "pages#home"
   get '/dashboard', to: 'pages#dashboard', as: :dashboard
 

@@ -7,8 +7,8 @@ class DumpstersController < ApplicationController
     @markers = @dumpsters.geocoded.map do |dumpster|
       {
         lat: dumpster.latitude,
-        lng: dumpster.longitude
-        # info_window: render_to_string(partial: "info_window", locals: {flat: flat})
+        lng: dumpster.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {dumpster: dumpster})
       }
     end
   end
@@ -19,6 +19,6 @@ class DumpstersController < ApplicationController
   private
 
   def set_dumpster
-    @dumpster = Dumpster.find(params[:id])
+    @dumpsters = Dumpster.find(params[:id])
   end
 end
