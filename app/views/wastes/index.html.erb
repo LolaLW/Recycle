@@ -55,6 +55,7 @@
               </div>
 
               <div class="bookmarks">
+
                 <% if waste.users.include?(current_user) %>
                   <%= link_to waste_bookmark_path(waste,Bookmark.where(waste: waste, user: current_user).first), data: {turbo_method: :delete} do %>
                     <div class="bookmark-full">
@@ -68,6 +69,18 @@
                     </div>
                   <% end %>
                 <% end %>
+
+                  <%#= button_to 'SAVE', saving_bookmark_waste_path(waste.id), data: { turbo: false } %>
+                  <%#= link_to 'SAVE', saving_bookmark_waste_path(waste.id), data: { turbo: false, method: :post } %>
+                    <%# SAVE %>
+                  <%# end %>
+
+
+
+
+
+
+
               </div>
 
             </div>

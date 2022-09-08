@@ -1,31 +1,33 @@
-<div class="navbar">
+<% if user_signed_in? %>
+  <div class="navbar">
 
-  <div class="container-nav">
-    <%= link_to dumpsters_path do %>
-      <img src= "<%= image_path('placeholder.png') %>" />
-    <% end %>
-  </div>
+    <div class="container-nav">
+      <%= link_to dumpsters_path do %>
+        <img src= "<%= image_path('placeholder.png') %>" />
+      <% end %>
+    </div>
 
-  <div class="container-nav">
-    <%= link_to dashboard_path do %>
-      <img src= "<%= image_path('user.png') %>" />
-    <% end %>
-  </div>
+    <div class="container-nav">
+      <%= link_to dashboard_path do %>
+        <img src= "<%= image_path('user.png') %>" />
+      <% end %>
+    </div>
 
-  <div class="container-nav">
-    <%= link_to wastes_path do %>
-      <img src= "<%= image_path('loupe.png') %>" />
-    <% end %>
-  </div>
+    <div class="container-nav">
+      <%= link_to wastes_path do %>
+        <img src= "<%= image_path('loupe.png') %>" />
+      <% end %>
+    </div>
 
-    <% if user_signed_in? %>
-      <div class="container-nav">
-        <div id="bookmark-width">
-          <%= link_to user_bookmarks_path(current_user) do %>
-            <img src= "<%= image_path('bookmark.png') %>" />
-          <% end %>
+      <% if user_signed_in? %>
+        <div class="container-nav">
+          <div id="bookmark-width">
+            <%= link_to user_bookmarks_path(current_user) do %>
+              <img src= "<%= image_path('bookmark.png') %>" />
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
 
-</div>
+  </div>
+<% end %>

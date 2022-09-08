@@ -1,5 +1,5 @@
 .pickup-info {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 .pickup-info > div {
   margin: 8px;
@@ -7,10 +7,15 @@
 
 .calendar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 160px;
 }
 
 .calendar img {
   height: 35px;
+}
+
+.pickup-info > br {
+  margin: 10px;
 }

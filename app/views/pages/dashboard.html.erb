@@ -1,35 +1,56 @@
 <div class="container-dashboard">
-<br>
 
-  <h4>Bonjour <%= @user.first_name %></h4>
+  <h3>Bonjour <%= @user.first_name %></h3>
 
-<br>
+  <div class="form-produit">
+    <h4>Changer mon adresse</h4>
 
-  <h4>tu peux créer ton produit ici</h4>
+    <%= simple_form_for(current_user) do |f| %>
+      <%= f.input :address, label: "adresse" %>
+      <%= f.submit "enregistrer" %>
+    <% end %>
+  </div>
 
-  <%= simple_form_for(wastes_url) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description%>
-    <%= f.submit "enregistrer" %>
-  <% end %>
+  <div class="container-waste-show">
+    <div class="form-info-user">
+      <%# ici le user a un champs pour changer son adresse sur l'app %>
+      <%# puis sur l'adresse actuelle montré ici info pickup %>
+      <div class="form-produit">
+      <h4>Tous les ramassages de mon adresse</h4>
+        <div class="pickup-info">
+          <div class="calendar">
+            <h3><%= @pickup&.name %></h3>
+            <%= image_tag("calendar.png") %>
+          </div>
+        </div>
+      <%= @pickup&.description&.html_safe %>
+      </div>
+    </div>
+  </div>
 
-<br>
-<br>
+  <div class="form-produit">
+    <h4>Ajouter un produit</h4>
 
-  <h4>tu peux créer tes bacs ici</h4>
+    <%= simple_form_for(wastes_url) do |f| %>
+      <%= f.input :name, label: "Nom" %>
+      <%= f.input :description %>
+      <%= f.submit "enregistrer" %>
+    <% end %>
+  </div>
 
-  <%= simple_form_for(new_element_path) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :category_id%>
-    <%= f.submit "enregistrer" %>
-  <% end %>
+  <div class="form-bac">
+    <h4>Ajouter un bac</h4>
 
-<br>
-<br>
+    <%= simple_form_for(new_element_path) do |f| %>
+      <%= f.input :name, label: "Nom" %>
+      <%= f.input :category_id, label: "Categorie" %>
+      <%= f.submit "enregistrer"%>
+    <% end %>
+  </div>
 
   <div class="btn-home">
     <button type="button" class="btn-outline-success">
-      <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+      <%= link_to "déconnexion", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
     </button>
   </div>
 

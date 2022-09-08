@@ -44,6 +44,10 @@ class WastesController < ApplicationController
     redirect_to wastes_path, status: :see_other
   end
 
+  # def saving_bookmark
+  #   raise
+  # end
+
   private
 
   def set_waste

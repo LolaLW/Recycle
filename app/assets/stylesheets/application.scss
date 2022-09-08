@@ -26,6 +26,8 @@ a {
 
 .container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 100%;
   padding-left: 0px;
@@ -35,6 +37,7 @@ a {
 
 .container-dashboard {
   width: 90%;
+  margin: 5px;
 }
 
 .recycle span {
@@ -42,5 +45,5 @@ a {
 }
 
 .container-waste-show {
-  width: 90%;
+  width: 100%;
 }

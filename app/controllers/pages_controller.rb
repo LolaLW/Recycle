@@ -8,5 +8,6 @@ class PagesController < ApplicationController
   def dashboard
     @user = current_user
     @bookmarked_wastes = @user.bookmarked_wastes
+    @pickup = current_user.pickup
   end
 end
