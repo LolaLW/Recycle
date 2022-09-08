@@ -8,7 +8,7 @@ class DumpstersController < ApplicationController
       {
         lat: dumpster.latitude,
         lng: dumpster.longitude
-        info_window: render_to_string(partial: "info_window", locals: {flat: flat})
+        # info_window: render_to_string(partial: "info_window", locals: {flat: flat})
       }
     end
   end
