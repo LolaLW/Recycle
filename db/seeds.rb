@@ -135,8 +135,8 @@ colonnes_a_verre_json_file.dig("records").each do |record|
 
   Dumpster.create!(name: name,
                    address: address,
-                   latitude: coordinates[0],
-                   longitude: coordinates[1]
+                   latitude: coordinates[1],
+                   longitude: coordinates[0]
                   )
 
   puts "Dumpster done"
