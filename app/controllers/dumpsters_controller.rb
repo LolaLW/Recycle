@@ -1,5 +1,5 @@
 class DumpstersController < ApplicationController
-  before_action :set_dumpster, only: %i[index show]
+  # before_action :set_dumpster, only: %i[index show]
 
   def index
     @dumpsters = Dumpster.all
@@ -18,7 +18,7 @@ class DumpstersController < ApplicationController
 
   private
 
-  def set_dumpster
-    @dumpsters = Dumpster.find(params[:id])
-  end
+  # def set_dumpster
+  #   @dumpsters = Dumpster.find(params[:id])
+  # end
 end
