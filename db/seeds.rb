@@ -19,22 +19,21 @@ Pickup.destroy_all
 Dumpster.destroy_all
 
 barcodes = %w[59032823
+  3046920022651
   3225350000501
   3155251205296
   5411188119098
-  3046920022651
   3274080005003
-  7622210449283
-  3168930010265
   3046920022606
   8000500310427
   3760020507350
-  5449000131805]
+  5449000131805
+  5410041005707]
 
 puts "Barcodes done"
 
 # category = Category.create(:name)
-categories = ["Bac jaune", "Bac bleu", "Bac gris", "Bac vert", "Bac marron", "Bac blanc"]
+categories = ["Bac jaune", "Bac bleu", "Bac vert", "Bac marron", "Bac blanc"]
 
 categories.each do |category|
   Category.create(name: category)
@@ -53,7 +52,7 @@ puts "Categories done"
   elsif el == "alimentaire"
     element.category = Category.find_by_name('Bac marron')
   else
-    element.category = Category.find_by_name('Bac gris')
+    element.category = Category.find_by_name('Bac vert')
   end
   element.save!
 end
