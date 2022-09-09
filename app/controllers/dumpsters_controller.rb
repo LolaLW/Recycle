@@ -16,7 +16,7 @@ class DumpstersController < ApplicationController
   def show
   end
 
-  private
+  # private
 
   # def set_dumpster
   #   @dumpsters = Dumpster.find(params[:id])
